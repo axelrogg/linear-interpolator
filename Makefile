@@ -1,2 +1,2 @@
-main: main.c
-	$(CC) main.c -g -o main -Wall -Wextra -pedantic -std=c99
+linear-interpolator: linear-interpolator.c
+	$(CC) linear-interpolator.c -g -o linear-interpolator -Wall -Wextra -pedantic -std=c99

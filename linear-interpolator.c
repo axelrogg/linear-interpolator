@@ -20,7 +20,7 @@ int get_batches_number() {
     int batches_input;
 
     while (1) {
-        printf("Number of tails (1-5): ");
+        printf("Number of batches (1-5): ");
         batches_input = getchar();
         clear_input_buffer();
 
@@ -46,18 +46,19 @@ double input_double() {
 
         lead = strtod(lead_input, &conversion_endptr);
         if (*conversion_endptr != '\0') {
-            printf("Input is too long. The limit is 100 digits.");
+            printf("Input is too long. The limit is 100 digits.\n");
             return -1;
         } else {
             return lead;
         }
     } else {
-        printf("input_number :: error getting lead input");
+        printf("input_number :: error getting lead input\n");
         return -1;
     }
 }
 
 void get_leads(double leads[3]) {
+    printf("############# Leads #############\n");
     for(int i = 0; i < 3; i++) {
         double lead;
         printf("Enter lead %d: ", i + 1);
@@ -71,9 +72,10 @@ void get_leads(double leads[3]) {
 void get_tails(double tails[], int batches_number) {
     int batch_indx = 0;
     while (batch_indx < batches_number) {
+        printf("############# Batch %d #############\n", batch_indx + 1);
         for (int i = 0; i < 2; i++) {
             double tail;
-            printf("Enter batch %d, lead %d: ", batch_indx + 1, i + 1);
+            printf("Enter lead %d: ", i + 1);
             tail = input_double();
             if (tail != -1) {
                 tails[batch_indx * 2 + i] = tail;
@@ -93,13 +95,14 @@ void calculate_tails(int batches, double leads[], double tails[], double results
 }
 
 void show_results(int batches, double results[]) {
-    printf("Here are your results:\n");
+    printf("############# Results #############\n");
     for (int i = 0; i < batches; i++) {
-        printf("%0.4f", results[i]);
+        printf("Result for batch %d: %0.4f", i, results[i]);
     }
 }
 
 int main() {
+    printf("A simple linear interpolator\n");
     int batches = get_batches_number();
     double leads[3];
     double tails[batches * 2];
